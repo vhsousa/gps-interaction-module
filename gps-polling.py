@@ -15,7 +15,7 @@ if __name__ == '__main__':
   gpsd = gps(host="10.3.1.240", port=8080) #starting the stream of info
 
   try:
-    gpsp.start() # start it up
+    gpsd.start() # start it up
 
     while True:
       #It may take a second or two to get good data
