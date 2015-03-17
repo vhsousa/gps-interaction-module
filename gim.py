@@ -2,7 +2,7 @@ import os
 import time
 import gps
 
-session = gps.gps(host="10.3.1.240", port=2947)
+session = gps.gps(host="10.3.1.240", port=443)
 
 while 1:
     os.system('clear')
