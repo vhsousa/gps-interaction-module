@@ -5,35 +5,22 @@ __author__ = 'vhsousa'
 
 import os
 from gps import *
-from time import *
 import time
-import threading
 
 gpsd = None #seting the global variable
 
 os.system('clear') #clear the terminal (optional)
 
-class GpsPoller(threading.Thread):
-  def __init__(self):
-    threading.Thread.__init__(self)
-    global gpsd #bring it in scope
-    gpsd = gps(host="10.3.1.240", port=8080, mode=WATCH_ENABLE) #starting the stream of info
-    self.current_value = None
-    self.running = True #setting the thread running to true
-
-  def run(self):
-    global gpsd
-    while gpsp.running:
-      gpsd.next() #this will continue to loop and grab EACH set of gpsd info to clear the buffer
-
 if __name__ == '__main__':
-  gpsp = GpsPoller() # create the thread
+  gpsd = gps(host="10.3.1.240", port=8080) #starting the stream of info
+
   try:
     gpsp.start() # start it up
+
     while True:
       #It may take a second or two to get good data
       #print gpsd.fix.latitude,', ',gpsd.fix.longitude,'  Time: ',gpsd.utc
-
+      gpsd.next()
       os.system('clear')
 
       print
