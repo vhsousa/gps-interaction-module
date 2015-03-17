@@ -1,3 +1,5 @@
+import traceback
+
 __author__ = 'vhsousa'
 #! /usr/bin/python
 # Written by Dan Mandle http://dan.mandle.me September 2012
@@ -39,5 +41,6 @@ if __name__ == '__main__':
               time.sleep(1) #set to whatever
 
         except Exception, e:
-            print e
+            print 'Exception' + str(e)
+            print traceback.print_exc()
             continue
