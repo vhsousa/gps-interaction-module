@@ -15,7 +15,6 @@ if __name__ == '__main__':
               #It may take a second or two to get good data
 
               gpsd.next()
-              print
               print gpsd, gpsd.fix.latitude,', ',gpsd.fix.longitude,'  Time: ',gpsd.utc
               #os.system('clear')
 
