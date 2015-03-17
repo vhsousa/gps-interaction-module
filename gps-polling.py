@@ -7,10 +7,6 @@ import os
 from gps import *
 import time
 
-gpsd = None #seting the global variable
-
-os.system('clear') #clear the terminal (optional)
-
 if __name__ == '__main__':
     gpsd = gps(host="10.3.1.240", port=8080, mode=WATCH_ENABLE) #starting the stream of info
 
