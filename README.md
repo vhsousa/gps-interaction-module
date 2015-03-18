@@ -13,3 +13,6 @@ http://raspberry.piaustralia.com.au/pages/using-the-raspberry-pi-model-b-with-it
 ```bash
 sudo apt-get install python-dev python-gps
 ```
+
+https://learn.adafruit.com/adafruit-ultimate-gps-on-the-raspberry-pi/using-your-gps
+

@@ -1,31 +1,46 @@
+import traceback
+
+__author__ = 'vhsousa'
+#! /usr/bin/python
+# Written by Dan Mandle http://dan.mandle.me September 2012
+# License: GPL 2.0
+
 import os
+from gps import *
 import time
-import gps
 
-session = gps.gps(host="10.3.1.240", port=443)
+if __name__ == '__main__':
 
-while 1:
-    os.system('clear')
-    session.query('admosy') 
-    # a = altitude, d = date/time, m=mode,  
-    # o=postion/fix, s=status, y=satellites
+    gpsd = gps(host="localhost", port=2947, mode=WATCH_ENABLE) #starting the stream of info
+    while True:
+        try:
+              #It may take a second or two to get good data
 
-    print
-    print ' GPS reading'
-    print '----------------------------------------'
-    print 'latitude    ' , session.fix.latitude
-    print 'longitude   ' , session.fix.longitude
-    print 'time utc    ' , session.utc, session.fix.time
-    print 'altitude    ' , session.fix.altitude
-    print 'eph         ' , session.fix.eph
-    print 'epv         ' , session.fix.epv
-    print 'ept         ' , session.fix.ept
-    print 'speed       ' , session.fix.speed
-    print 'climb       ' , session.fix.climb
-    
-    print
-    print ' Satellites (total of', len(session.satellites) , ' in view)'
-    for i in session.satellites:
-        print '\t', i
+              gpsd.next()
+              #print gpsd, gpsd.fix.latitude,', ',gpsd.fix.longitude,'  Time: ',gpsd.utc
+              os.system('clear')
 
-    time.sleep(3)
+              print
+              print ' GPS reading'
+              print '----------------------------------------'
+              print 'latitude    ' , gpsd.fix.latitude
+              print 'longitude   ' , gpsd.fix.longitude
+              print 'time utc    ' , gpsd.utc,' + ', gpsd.fix.time
+              print 'altitude (m)' , gpsd.fix.altitude
+              print 'eps         ' , gpsd.fix.eps
+              print 'epx         ' , gpsd.fix.epx
+              print 'epv         ' , gpsd.fix.epv
+              print 'ept         ' , gpsd.fix.ept
+              print 'speed (m/s) ' , gpsd.fix.speed
+              print 'climb       ' , gpsd.fix.climb
+              print 'track       ' , gpsd.fix.track
+              print 'mode        ' , gpsd.fix.mode
+              print
+              print 'sats        ' , gpsd.satellites
+
+              time.sleep(1) #set to whatever
+
+        except Exception, e:
+            print 'Exception' + str(e)
+            print traceback.print_exc()
+            continue
